@@ -10,6 +10,7 @@ export const getElOffset = el => {
   }
 }
 
+/* Grabs x and y coordinates at currennt cursor location on the page */
 export const getCoords = e => {
   if (e.pageX || e.pageY) return { x: e.pageX, y: e.pageY }
 
@@ -19,18 +20,37 @@ export const getCoords = e => {
   }
 }
 
+/* Handle mouse down */
+export const mouseDown = (e, cursorState, setCursorState, drawings, setDrawings) => {
+  if (cursorState.isDrawing) {
+    let mouseCoords = getCoords(e)
+    let offset = getElOffset(e.target)
+    const startX = mouseCoords.x - offset.left
+    const startY = mouseCoords.y - offset.top
 
+    setDrawings([...drawings, ...[{
+      startX: startX, 
+      startY: startY, 
+      type: cursorState.type,
+      isDrawing: false,
+    }]])
 
-export const mapShape = (shape) => {
-    switch (shape) {
-      case 'circle':
-        return <Circle />
-      case 'rectangle':
-        return <Rectangle />
-      case 'line':
-        return <Line />
-    
-      default:
-        break;
-    }
+    setCursorState({
+      ...cursorState,
+      isDrawing: false,
+    })
   }
+}
+
+export const mapShape = (drawing, index) => {
+  switch (drawing.type) {
+    case 'circle':
+      return <Circle key={index} props={drawing} />
+    case 'rectangle':
+      return <Rectangle key={index} props={drawing} />
+    case 'line':
+      return <Line key={index} props={drawing} />
+    default:
+      break;
+  }
+}
