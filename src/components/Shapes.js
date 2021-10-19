@@ -1,25 +1,22 @@
 import React from 'react'
 
-export const Circle = ({ color }) => {
+export const Circle = ({ props }) => {
+  const { startX, startY } = props
   return (
-    <svg style={{ height: "100px", width: "100px" }}>
-      <circle cx="50" cy="50" r="50"/>
-    </svg>
+      <circle cx={startX} cy={startY} r="50" />
   )
 }
 
-export const Rectangle = ({ color }) => {
+export const Rectangle = ({ props }) => {
+  const { startX, startY } = props
   return (
-    <svg style={{ height: "100px", width: "100px" }}>
-      <rect x="10" y="10" width="30" height="30"/>
-    </svg>
+      <rect x={startX} y={startY} width="30" height="30" />
   )
 }
 
-export const Line = ({ color = 'black' }) => {
+export const Line = ({ props }) => {
+  const { startX, startY } = props
   return (
-    <svg style={{ height: "100px", width: "100px" }}>
-      <line x1="10" x2="50" y1="110" y2="150" stroke={color} strokeWidth="5"/>
-    </svg>
+    <line x1={startX} x2={"50"} y1={startY} y2="150" stroke="black" strokeWidth="5" />
   )
 }
