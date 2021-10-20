@@ -16,30 +16,8 @@ const handleAction = (e, cursorState, setCursorState, drawings, setDrawings, sha
   }
 }
 
-export const Circle = ({ cursorState, drawings, setDrawings, props }) => {
-  const { startX, startY, shapeId } = props
-  return (
-    <circle cx={startX} cy={startY} r="50" onClick={e => handleAction(e, cursorState, drawings, setDrawings, shapeId)} />
-  )
-}
-
-export const Rectangle = ({ cursorState, drawings, setDrawings, props }) => {
-  const { startX, startY, shapeId } = props
-  return (
-    <rect x={startX} y={startY} width="30" height="30" onClick={e => handleAction(e, cursorState, drawings, setDrawings, shapeId)} />
-  )
-}
-
-export const Line = ({ cursorState, drawings, setDrawings, props }) => {
-  const { startX, startY, shapeId } = props
-  return (
-    <line x1={startX} x2={"50"} y1={startY} y2="150" stroke="black" strokeWidth="5" onClick={e => handleAction(e, cursorState, drawings, setDrawings, shapeId)} />
-  )
-}
-
 /* Dynamic Component for defining shapes */
 export const Shape = ({ drawing, cursorState, setCursorState, drawings, setDrawings }) => {
-  console.log('cursorState', cursorState)
   const { type, startX, startY, shapeId } = drawing
   const props = [cursorState, setCursorState, drawings, setDrawings, shapeId]
 

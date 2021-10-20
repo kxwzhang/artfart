@@ -45,16 +45,3 @@ export const mouseDown = (e, cursorState, setCursorState, drawings, setDrawings)
     })
   }
 }
-
-export const mapShape = (drawing, cursorState, drawings, setDrawings, index) => {
-  switch (drawing.type) {
-    case 'circle':
-      return <Circle key={index} props={drawing} cursorState={cursorState} drawings={drawings} setDrawings={setDrawings} />
-    case 'rectangle':
-      return <Rectangle key={index} props={drawing} cursorState={cursorState} drawings={drawings} setDrawings={setDrawings} />
-    case 'line':
-      return <Line key={index} props={drawing} cursorState={cursorState} drawings={drawings} setDrawings={setDrawings} />
-    default:
-      break;
-  }
-}

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import * as R from 'ramda'
 import CreateShape from './components/CreateShape'
 import DeleteShape from './components/DeleteShape';
-import { mapShape, mouseDown } from './utils/ShaperHelpers'
+import { mouseDown } from './utils/ShaperHelpers'
 import { Shape } from './components/Shapes'
 
 function App() {
@@ -43,8 +43,6 @@ function App() {
   
   const shapes = ['circle', 'rectangle', 'line']
 
-  console.log('drawings', drawings)
-
   return (
     <div 
       className="App" 
@@ -59,11 +57,10 @@ function App() {
       </div>
       <svg width="100%" height="100vh" className="Canvas">
         {!R.isEmpty(drawings) &&
-        R.map((drawing, index) => {
-          {/* const Shape = mapShape(drawing, cursorState, drawings, setDrawings, index) */}
+        R.map((drawing) => {
           return (
             <Shape 
-              key={index} 
+              key={drawing.shapeId} 
               drawing={drawing} 
               drawings={drawings} 
               setDrawings={setDrawings} 
