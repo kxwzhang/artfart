@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { Circle, Rectangle, Line } from '../components/Shapes'
 
 export const getElOffset = el => {
@@ -28,13 +29,16 @@ export const mouseDown = (e, cursorState, setCursorState, drawings, setDrawings)
     const startX = mouseCoords.x - offset.left
     const startY = mouseCoords.y - offset.top
 
-    setDrawings([...drawings, ...[{
+    const uuid = uuidv4()
+
+    setDrawings([ ...drawings, ...[{
       startX: startX, 
       startY: startY, 
       type: cursorState.type,
       isDrawing: false,
+      shapeId: uuid,
     }]])
-
+    
     setCursorState({
       ...cursorState,
       isDrawing: false,
@@ -42,14 +46,14 @@ export const mouseDown = (e, cursorState, setCursorState, drawings, setDrawings)
   }
 }
 
-export const mapShape = (drawing, index) => {
+export const mapShape = (drawing, cursorState, drawings, setDrawings, index) => {
   switch (drawing.type) {
     case 'circle':
-      return <Circle key={index} props={drawing} />
+      return <Circle key={index} props={drawing} cursorState={cursorState} drawings={drawings} setDrawings={setDrawings} />
     case 'rectangle':
-      return <Rectangle key={index} props={drawing} />
+      return <Rectangle key={index} props={drawing} cursorState={cursorState} drawings={drawings} setDrawings={setDrawings} />
     case 'line':
-      return <Line key={index} props={drawing} />
+      return <Line key={index} props={drawing} cursorState={cursorState} drawings={drawings} setDrawings={setDrawings} />
     default:
       break;
   }
