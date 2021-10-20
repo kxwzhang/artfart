@@ -1,6 +1,5 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { Circle, Rectangle, Line } from '../components/Shapes'
 
 export const getElOffset = el => {
   const shape = el.getBoundingClientRect()
