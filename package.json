@@ -1,5 +1,6 @@
 {
   "name": "artfart",
+  "homepage": "https://artfart.deepai.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
