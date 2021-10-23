@@ -11,6 +11,10 @@ function App() {
   const initialCursorState = {
     startX: 0,
     startY: 0,
+    prevX: 0,
+    prevY: 0,
+    offsetX: 0,
+    offsetY: 0,
     isDrawing: false,
     isDeleting: false,
     type: null,
