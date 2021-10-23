@@ -1,6 +1,15 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
+/* Generates a random color */
+export const getRandomColor = () => {
+  let color = ''
+  while (color === '#FFFFFF' || color === '') {
+    color = '#' + Math.floor(Math.random()*16777215).toString(16)
+  }
+  return color
+}
+
 export const getElOffset = el => {
   const shape = el.getBoundingClientRect()
 
@@ -29,6 +38,7 @@ export const mouseDown = (e, cursorState, setCursorState, drawings, setDrawings)
     const startY = mouseCoords.y - offset.top
 
     const uuid = uuidv4()
+    const color = getRandomColor()
 
     setDrawings([ ...drawings, ...[{
       startX: startX, 
@@ -36,6 +46,7 @@ export const mouseDown = (e, cursorState, setCursorState, drawings, setDrawings)
       type: cursorState.type,
       isDrawing: false,
       shapeId: uuid,
+      color: color,
     }]])
     
     setCursorState({
