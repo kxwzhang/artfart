@@ -18,7 +18,7 @@ const handleAction = (e, cursorState, setCursorState, drawings, setDrawings, sha
 
 /* Dynamic Component for defining shapes */
 export const Shape = ({ drawing, cursorState, setCursorState, drawings, setDrawings }) => {
-  const { type, startX, startY, shapeId } = drawing
+  const { type, startX, startY, shapeId, color } = drawing
   const props = [cursorState, setCursorState, drawings, setDrawings, shapeId]
 
   switch (type) {
@@ -28,6 +28,7 @@ export const Shape = ({ drawing, cursorState, setCursorState, drawings, setDrawi
           cx={startX} 
           cy={startY} 
           r="50" 
+          fill={color}
           onClick={e => handleAction(e, ...props)} 
         />
       )
@@ -38,17 +39,20 @@ export const Shape = ({ drawing, cursorState, setCursorState, drawings, setDrawi
           y={startY} 
           width="30" 
           height="30" 
+          fill={color}
           onClick={e => handleAction(e, ...props)} 
         />
       )
     case 'line':
+      const endX = startX + 50
+      const endY = startY + 50
       return (
         <line 
           x1={startX} 
-          x2={"50"} 
+          x2={endX} 
           y1={startY} 
-          y2="150" 
-          stroke="black" 
+          y2={endY} 
+          stroke={color}
           strokeWidth="5" 
           onClick={e => handleAction(e, ...props)} 
         />
